@@ -8,6 +8,113 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="styles.css"/>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js"></script>
+<style>
+/* Leaflet critical CSS inlined para GitHub Pages */
+.leaflet-pane,.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-tile-container,.leaflet-pane>svg,.leaflet-pane>canvas,.leaflet-zoom-box,.leaflet-image-layer,.leaflet-layer{position:absolute;left:0;top:0}
+.leaflet-container{overflow:hidden}
+.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow{-webkit-user-select:none;-moz-user-select:none;user-select:none;-webkit-user-drag:none}
+.leaflet-tile::selection{background:transparent}
+.leaflet-safari .leaflet-tile{image-rendering:-webkit-optimize-contrast}
+.leaflet-safari .leaflet-tile-container{width:1600px;height:1600px;-webkit-transform-origin:0 0}
+.leaflet-marker-icon,.leaflet-marker-shadow{display:block}
+.leaflet-container .leaflet-overlay-pane svg{max-width:none!important;max-height:none!important}
+.leaflet-container.leaflet-touch-zoom{-ms-touch-action:pan-x pan-y;touch-action:pan-x pan-y}
+.leaflet-container.leaflet-touch-drag{-ms-touch-action:pinch-zoom;touch-action:none;touch-action:pinch-zoom}
+.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom{-ms-touch-action:none;touch-action:none}
+.leaflet-container{-webkit-tap-highlight-color:transparent}
+.leaflet-container a{-webkit-tap-highlight-color:rgba(51,181,229,.4)}
+.leaflet-tile{filter:inherit;visibility:hidden}
+.leaflet-tile-loaded{visibility:inherit}
+.leaflet-zoom-box{width:0;height:0;-moz-box-sizing:border-box;box-sizing:border-box;z-index:800}
+.leaflet-overlay-pane svg{-moz-user-select:none}
+.leaflet-pane{z-index:400}
+.leaflet-tile-pane{z-index:200}
+.leaflet-overlay-pane{z-index:400}
+.leaflet-shadow-pane{z-index:500}
+.leaflet-marker-pane{z-index:600}
+.leaflet-tooltip-pane{z-index:650}
+.leaflet-popup-pane{z-index:700}
+.leaflet-map-pane canvas{z-index:100}
+.leaflet-map-pane svg{z-index:200}
+.leaflet-vml-shape{width:1px;height:1px}
+.lvml{behavior:url(#default#VML);display:inline-block;position:absolute}
+.leaflet-control{position:relative;z-index:800;pointer-events:visiblePainted;pointer-events:auto}
+.leaflet-top,.leaflet-bottom{position:absolute;z-index:1000;pointer-events:none}
+.leaflet-top{top:0}.leaflet-right{right:0}.leaflet-bottom{bottom:0}.leaflet-left{left:0}
+.leaflet-control{float:left;clear:both}
+.leaflet-right .leaflet-control{float:right}
+.leaflet-top .leaflet-control{margin-top:10px}
+.leaflet-bottom .leaflet-control{margin-bottom:10px}
+.leaflet-left .leaflet-control{margin-left:10px}
+.leaflet-right .leaflet-control{margin-right:10px}
+.leaflet-fade-anim .leaflet-popup{opacity:0;-webkit-transition:opacity .2s linear;-moz-transition:opacity .2s linear;transition:opacity .2s linear}
+.leaflet-fade-anim .leaflet-map-pane .leaflet-popup{opacity:1}
+.leaflet-zoom-animated{-webkit-transform-origin:0 0;-ms-transform-origin:0 0;transform-origin:0 0}
+svg.leaflet-zoom-animated{will-change:transform}
+.leaflet-zoom-anim .leaflet-zoom-animated{-webkit-transition:-webkit-transform .25s cubic-bezier(0,0,.25,1);-moz-transition:-moz-transform .25s cubic-bezier(0,0,.25,1);transition:transform .25s cubic-bezier(0,0,.25,1)}
+.leaflet-zoom-anim .leaflet-tile,.leaflet-pan-anim .leaflet-tile{-webkit-transition:none;-moz-transition:none;transition:none}
+.leaflet-zoom-anim .leaflet-zoom-animated.leaflet-retrieved-pane{-webkit-transition:none;-moz-transition:none;transition:none}
+.leaflet-interactive{cursor:pointer}
+.leaflet-grab{cursor:-webkit-grab;cursor:-moz-grab;cursor:grab}
+.leaflet-crosshair,.leaflet-crosshair .leaflet-interactive{cursor:crosshair}
+.leaflet-popup-pane,.leaflet-control{cursor:auto}
+.leaflet-dragging .leaflet-grab,.leaflet-dragging .leaflet-grab .leaflet-interactive,.leaflet-dragging .leaflet-marker-draggable{cursor:move;cursor:-webkit-grabbing;cursor:-moz-grabbing;cursor:grabbing}
+.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-image-layer,.leaflet-pane>svg path,.leaflet-tile-container{pointer-events:none}
+.leaflet-marker-icon.leaflet-interactive,.leaflet-image-layer.leaflet-interactive,.leaflet-pane>svg path.leaflet-interactive,svg.leaflet-image-layer.leaflet-interactive path{pointer-events:visiblePainted;pointer-events:auto}
+.leaflet-container{background:#ddd;outline-offset:1px}
+.leaflet-container a{color:#0078a8}
+.leaflet-container a.leaflet-active{outline:2px solid orange}
+.leaflet-zoom-box{border:2px dotted #38f;background:rgba(255,255,255,.5)}
+.leaflet-bar{box-shadow:0 1px 5px rgba(0,0,0,.65);border-radius:4px}
+.leaflet-bar a{background-color:#fff;border-bottom:1px solid #ccc;width:26px;height:26px;line-height:26px;display:block;text-align:center;text-decoration:none;color:black}
+.leaflet-bar a,.leaflet-control-layers-toggle{background-position:50% 50%;background-repeat:no-repeat;display:block}
+.leaflet-bar a:hover,.leaflet-bar a:focus{background-color:#f4f4f4}
+.leaflet-bar a:first-child{border-top-left-radius:4px;border-top-right-radius:4px}
+.leaflet-bar a:last-child{border-bottom-left-radius:4px;border-bottom-right-radius:4px;border-bottom:none}
+.leaflet-bar a.leaflet-disabled{cursor:default;background-color:#f4f4f4;color:#bbb}
+.leaflet-touch .leaflet-bar a{width:30px;height:30px;line-height:30px}
+.leaflet-touch .leaflet-bar a:first-child{border-top-left-radius:2px;border-top-right-radius:2px}
+.leaflet-touch .leaflet-bar a:last-child{border-bottom-left-radius:2px;border-bottom-right-radius:2px}
+.leaflet-control-zoom-in,.leaflet-control-zoom-out{font:bold 18px "Lucida Console",Monaco,monospace;text-indent:1px}
+.leaflet-touch .leaflet-control-zoom-in{font-size:22px}
+.leaflet-touch .leaflet-control-zoom-out{font-size:20px}
+.leaflet-control-attribution{background:rgba(255,255,255,.8);margin:0}
+.leaflet-control-attribution.leaflet-compact .leaflet-attribution-flag{display:inline!important;vertical-align:middle;width:1em;height:.6875em}
+.leaflet-left .leaflet-control-attribution{border-radius:0 2px 0 0}
+.leaflet-right .leaflet-control-attribution{border-radius:2px 0 0 0}
+.leaflet-control-attribution a{text-decoration:none}
+.leaflet-control-attribution a:hover,.leaflet-control-attribution a:focus{text-decoration:underline}
+.leaflet-attribution-flag{display:none}
+.leaflet-control-scale-line{border:2px solid #777;border-top:none;line-height:1.1;padding:2px 5px 1px;white-space:nowrap;-moz-box-sizing:border-box;box-sizing:border-box;background:rgba(255,255,255,.8);text-shadow:1px 1px #fff}
+.leaflet-control-scale-line:not(:first-child){border-top:2px solid #777;border-bottom:none;margin-top:-2px}
+.leaflet-control-scale-line:not(:first-child):not(:last-child){border-bottom:2px solid #777}
+.leaflet-touch .leaflet-control-attribution,.leaflet-touch .leaflet-control-layers,.leaflet-touch .leaflet-bar{box-shadow:none}
+.leaflet-touch .leaflet-control-layers,.leaflet-touch .leaflet-bar{border:2px solid rgba(0,0,0,.2);background-clip:padding-box}
+.leaflet-popup{position:absolute;text-align:center;margin-bottom:20px}
+.leaflet-popup-content-wrapper{padding:1px;text-align:left;border-radius:12px}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:white;color:#333;box-shadow:0 3px 14px rgba(0,0,0,.4)}
+.leaflet-popup-content{margin:13px 24px 13px 20px;line-height:1.3;font-size:13px;font-size:1.08333em;min-height:1px}
+.leaflet-popup-content p{margin:17px 0 11px}
+.leaflet-popup-tip-container{width:40px;height:20px;position:absolute;left:50%;margin-left:-20px;overflow:hidden;pointer-events:none}
+.leaflet-popup-tip{width:17px;height:17px;padding:1px;margin:-10px auto 0;-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}
+.leaflet-popup-content-wrapper a{color:#0078a8}
+.leaflet-popup-close-button{position:absolute;top:0;right:0;border:none;text-align:center;width:24px;height:24px;font:16px/24px Tahoma,Verdana,sans-serif;color:#757575;text-decoration:none;background:transparent}
+.leaflet-popup-close-button:hover,.leaflet-popup-close-button:focus{color:#585858}
+.leaflet-popup-scrolled{overflow:auto}
+.leaflet-oldie .leaflet-popup-content-wrapper{-ms-zoom:1}
+.leaflet-oldie .leaflet-popup-tip{width:24px;-ms-filter:"progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678)";filter:progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678)}
+.leaflet-tooltip{position:absolute;padding:6px;background-color:#fff;border:1px solid #fff;border-radius:3px;color:#222;white-space:nowrap;-webkit-user-select:none;-moz-user-select:none;user-select:none;pointer-events:none;box-shadow:0 1px 3px rgba(0,0,0,.4)}
+.leaflet-tooltip.leaflet-interactive{cursor:pointer;pointer-events:auto}
+.leaflet-tooltip-top:before,.leaflet-tooltip-bottom:before,.leaflet-tooltip-left:before,.leaflet-tooltip-right:before{position:absolute;pointer-events:none;border:6px solid transparent;background:transparent;content:""}
+.leaflet-tooltip-bottom:before{top:0;left:50%;margin-left:-6px;margin-top:-12px;border-bottom-color:#fff}
+.leaflet-tooltip-top:before{bottom:0;left:50%;margin-left:-6px;margin-bottom:-12px;border-top-color:#fff}
+.leaflet-tooltip-left:before{top:50%;right:0;margin-top:-6px;margin-right:-12px;border-left-color:#fff}
+.leaflet-tooltip-right:before{top:50%;left:0;margin-top:-6px;margin-left:-12px;border-right-color:#fff}
+#mapa-acapulco { width:100%; height:420px; background:#e8f4f8; position:relative; }
+.mapa-container { width:100%; height:420px; background:#e8f4f8; position:relative; z-index:1; }
+</style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
@@ -31,6 +138,7 @@
     <li><a onclick="showPage(&quot;publish&quot;)">Publicar</a></li>
     <li><a onclick="showPage('about')">Sobre Acapulco</a></li>
     <li><a onclick="showPage('contact')">Contacto</a></li>
+    <li style="display: none;"><a onclick="showPage('promos')" style="color:#E65100;font-weight:700;">🏷️ Promos</a></li>
     <li><a onclick="showPage('acapoints')" style="color:var(--teal);font-weight:600;">🪙 AcaPoints</a></li>
   </ul>
   <div class="nav-actions" id="nav-actions">
@@ -56,6 +164,7 @@
   <a onclick="showPage('about');closeMobileMenu()">🌊 Sobre Acapulco</a>
   <a onclick="showPage('contact');closeMobileMenu()">✉️ Contacto</a>
   <a onclick="showPage('acapoints');closeMobileMenu()" style="color:var(--teal);font-weight:600;">🪙 AcaPoints</a>
+  <a onclick="showPage('promos');closeMobileMenu()" style="display: none; color:#E65100;font-weight:700;">🏷️ Promos y Descuentos</a>
 </div>
 
 <!-- HOME -->
@@ -351,78 +460,75 @@
           <button class="cat-btn" data-cat="experiencias" onclick="selectCat(this)"><span class="cat-icon">⛵</span>Experiencias</button>
         </div>
       </div>
-      <div class="row-2">
-        <div class="form-group">
-          <label class="form-label">Precio ($MXN) <span class="req">*</span></label>
-          <input class="form-input" type="number" placeholder="Ej: 500" id="pub-price" min="0"/>
+      <!-- Panel precio estándar (Hospedaje, Servicios, Experiencias) -->
+      <div id="precio-estandar-panel">
+        <div class="row-2">
+          <div class="form-group">
+            <label class="form-label">Precio ($MXN) <span class="req">*</span></label>
+            <input class="form-input" type="number" placeholder="Ej: 500" id="pub-price" min="0"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tipo de precio <span class="req">*</span></label>
+            <select class="form-select" id="pub-price-type" onchange="onPriceTipoChange(this)">
+              <option>precio fijo</option><option>por persona</option><option>por noche</option><option>por grupo</option><option>por hora</option>
+              <option value="variable">variable (a convenir)</option>
+            </select>
+            <p class="hint" id="precio-tipo-hint">Ej: "500 por persona"</p>
+            <div id="variable-aviso" style="display:none;background:#fff3e0;border:1.5px solid #ffcc80;border-radius:10px;padding:10px 14px;font-size:13px;color:#e65100;margin-top:8px;">
+              ⚠️ Precio variable: solo se podrá pagar en <strong>efectivo</strong>. Tarjeta y AcaPoints se desactivarán automáticamente.
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label class="form-label">Tipo de precio <span class="req">*</span></label>
-          <select class="form-select" id="pub-price-type">
-            <option>precio fijo</option><option>por persona</option><option>por noche</option><option>por grupo</option><option>por hora</option>
-          </select>
-          <p style="font-size:12px;color:var(--text-light);margin-top:6px;">Ej: "500 por persona"</p>
+      </div>
+
+      <!-- Panel precio rango (solo Gastronomía) -->
+      <div id="precio-rango-panel" style="display:none;">
+        <div class="precio-rango-box">
+          <div class="precio-rango-header">
+            <span>🍽️</span>
+            <div>
+              <strong>Rango de precios por persona</strong>
+              <p>Indica el precio mínimo y máximo aproximado. Los clientes verán: "$150 – $350 por persona"</p>
+            </div>
+          </div>
+          <div class="row-2" style="margin-top:12px;">
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Precio mínimo ($MXN) <span class="req">*</span></label>
+              <input class="form-input" type="number" id="pub-price-min" min="0" placeholder="Ej: 150"
+                oninput="actualizarPreviewRango()"/>
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Precio máximo ($MXN) <span class="req">*</span></label>
+              <input class="form-input" type="number" id="pub-price-max" min="0" placeholder="Ej: 350"
+                oninput="actualizarPreviewRango()"/>
+            </div>
+          </div>
+          <div id="rango-preview" style="display:none;margin-top:10px;"></div>
+          <!-- Campos ocultos para compatibilidad con publishService -->
+          <input type="hidden" id="pub-price-rango" value="0"/>
+          <input type="hidden" id="pub-price-type-rango" value="por persona"/>
         </div>
       </div>
       <div class="form-group">
-        <label class="form-label">Ubicación <span class="req">*</span></label>
-        <select class="form-select" id="pub-location">
-          <option value="">Selecciona una zona</option>
-          <optgroup label="🏖 Zonas Turísticas">
-            <option>Zona Diamante</option>
-            <option>Zona Dorada</option>
-            <option>La Quebrada</option>
-            <option>Playa Condesa</option>
-            <option>Playa Icacos</option>
-            <option>Playa Hornos</option>
-            <option>Playa Hornitos</option>
-            <option>Playa Revolcadero</option>
-            <option>Playa Pie de la Cuesta</option>
-            <option>Playa Boca Chica</option>
-            <option>Puerto Marqués</option>
-            <option>Isla La Roqueta</option>
-          </optgroup>
-          <optgroup label="🏙 Zona Urbana">
-            <option>Centro de Acapulco</option>
-            <option>Acapulco Tradicional</option>
-            <option>Caleta y Caletilla</option>
-            <option>El Morro</option>
-            <option>Garita</option>
-            <option>Jardín de la Reina</option>
-            <option>Costa Azul</option>
-            <option>Icacos (Residencial)</option>
-          </optgroup>
-          <optgroup label="🛣 Colonias y Barrios">
-            <option>Ciudad Renacimiento</option>
-            <option>Colonia Moderna</option>
-            <option>El Coloso</option>
-            <option>Las Cruces</option>
-            <option>Lomas de Chapultepec</option>
-            <option>Mozimba</option>
-            <option>Progreso</option>
-            <option>Providencia</option>
-            <option>Santa Cruz</option>
-            <option>Tres Palos</option>
-            <option>El Arenal</option>
-            <option>La Sabana</option>
-          </optgroup>
-          <optgroup label="🌿 Municipios Cercanos">
-            <option>Coyuca de Benítez</option>
-            <option>San Marcos</option>
-            <option>Técpan de Galeana</option>
-          </optgroup>
-        </select>
+        <label class="form-label">Ubicación / Zona <span class="req">*</span></label>
+        <input class="form-input" type="text" id="pub-location"
+          placeholder="Ej: Zona Diamante, Centro, Playa Hornos..."
+          style="font-size:14px;"/>
+        <p class="hint">Escribe la zona o colonia donde está tu negocio. Se mostrará en tu tarjeta de servicio.</p>
       </div>
       <div class="form-group">
         <label class="form-label">
-          Enlace de Google Maps
+          🗺️ Enlace de Google Maps <span class="req">*</span>
+          <span style="font-weight:400;color:var(--text-light);font-size:12px;margin-left:4px;">(necesario para aparecer en el mapa)</span>
           <span style="font-weight:400;color:var(--text-light);font-size:12px;margin-left:6px;">(opcional)</span>
         </label>
         <input class="form-input" type="url" id="pub-maps-url"
           placeholder="https://maps.app.goo.gl/..."
-          style="font-size:13px;"/>
+          style="font-size:13px;"
+          oninput="previewMapsCoords(this.value)"/>
+        <div id="maps-coords-preview" style="display:none;margin-top:6px;"></div>
         <p style="font-size:12px;color:var(--text-light);margin-top:6px;line-height:1.5;">
-          📌 Abre Google Maps, busca tu negocio o dirección, toca <strong>Compartir → Copiar enlace</strong> y pégalo aquí.
+          📌 Abre Google Maps, busca tu negocio → toca <strong>Compartir → Copiar enlace</strong> y pégalo aquí. Las coordenadas exactas se usarán en el mapa.
         </p>
       </div>
       <div class="form-group">
@@ -471,6 +577,68 @@
         </div>
         <p class="hint">Los clientes te contactarán por WhatsApp. Si ya tienes teléfono en tu perfil, se usará ese por defecto.</p>
       </div>
+      <!-- HORARIO DE ATENCIÓN -->
+      <div class="form-group">
+        <label class="form-label">🕐 Horario de atención</label>
+        <div class="horario-toggle-row">
+          <label class="toggle-switch">
+            <input type="checkbox" id="pub-siempre-abierto" checked onchange="toggleHorario(this)"/>
+            <span class="toggle-slider"></span>
+          </label>
+          <span id="horario-toggle-label" style="font-size:14px;color:var(--text-mid);">Disponible siempre / sin horario fijo</span>
+        </div>
+        <div id="horario-panel" style="display:none;margin-top:14px;">
+          <div class="horario-grid" id="horario-grid">
+            <!-- Se genera por JS -->
+          </div>
+          <p class="hint" style="margin-top:8px;">Desactiva los días en que no ofreces el servicio.</p>
+        </div>
+      </div>
+
+      <!-- DISPONIBILIDAD / STOCK -->
+      <div class="form-group">
+        <label class="form-label">📦 Disponibilidad y límite de reservas</label>
+        <div class="disp-tipo-grid">
+          <button type="button" class="disp-tipo-btn active" data-tipo="ilimitado" onclick="selectDispTipo(this)">
+            <span>♾️</span><span>Sin límite</span>
+          </button>
+          <button type="button" class="disp-tipo-btn" data-tipo="diario" onclick="selectDispTipo(this)">
+            <span>📅</span><span>Límite diario</span>
+          </button>
+          <button type="button" class="disp-tipo-btn" data-tipo="semanal" onclick="selectDispTipo(this)">
+            <span>🗓️</span><span>Límite semanal</span>
+          </button>
+          <button type="button" class="disp-tipo-btn" data-tipo="total" onclick="selectDispTipo(this)">
+            <span>🔢</span><span>Stock total</span>
+          </button>
+        </div>
+        <div id="disp-panel" style="display:none;margin-top:14px;">
+          <div class="row-2">
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Cantidad máxima</label>
+              <input class="form-input" id="pub-disp-cantidad" type="number" min="1" placeholder="Ej: 20"/>
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Unidad</label>
+              <input class="form-input" id="pub-disp-unidad" type="text" placeholder="Ej: personas, lugares, habitaciones"/>
+            </div>
+          </div>
+          <div class="form-group" style="margin-top:12px;margin-bottom:0;">
+            <label class="form-label">⏰ Anticipación mínima para reservar</label>
+            <select class="form-select" id="pub-disp-anticipo">
+              <option value="0">Sin anticipación requerida</option>
+              <option value="1">1 hora antes</option>
+              <option value="2">2 horas antes</option>
+              <option value="6">6 horas antes</option>
+              <option value="12">12 horas antes</option>
+              <option value="24">1 día antes</option>
+              <option value="48">2 días antes</option>
+              <option value="72">3 días antes</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
       <!-- MÉTODOS DE PAGO ACEPTADOS -->
       <div class="form-group">
         <label class="form-label">Métodos de pago que aceptas <span class="req">*</span></label>
@@ -495,8 +663,24 @@
         <p class="hint" style="margin-top:8px;">🪙 <strong>AcaPoints</strong> es la moneda virtual de AcaConnect. 1 AcaPoint = $1 MXN.</p>
       </div>
 
+      <!-- TÉRMINOS Y CONDICIONES -->
+      <div class="form-group">
+        <div class="tyc-box" id="tyc-box">
+          <label class="tyc-label">
+            <input type="checkbox" id="pub-tyc" onchange="toggleTyC(this)"/>
+            <span class="tyc-check-custom"></span>
+            <span>Acepto los <button type="button" class="tyc-link" onclick="openTyC()">Términos y Condiciones</button> de AcaConnect para publicar servicios, incluyendo la política de comisiones y normas de la plataforma.</span>
+          </label>
+          <div class="tyc-promo-hint" id="tyc-promo-hint" style="display:none;">
+            🎉 <strong>¡Listo!</strong> Al aceptar los T&amp;C podrás crear <strong>Promos y Descuentos</strong> para tu servicio una vez publicado.
+          </div>
+        </div>
+      </div>
+
       <div class="form-actions">
-        <button class="btn-publish" onclick="publishService()">Publicar Servicio</button>
+        <button class="btn-publish" onclick="publishService()" id="btn-publicar" disabled style="opacity:.5;cursor:not-allowed;">
+          Publicar Servicio
+        </button>
         <button class="btn-cancel" onclick="showPage('marketplace')">Cancelar</button>
       </div>
     </div>
@@ -506,9 +690,43 @@
 
 <!-- SOBRE ACAPULCO -->
 <div id="page-about" class="page">
-  <h2>Sobre Acapulco</h2>
-  <p class="about-sub">Conoce la perla del Pacífico mexicano</p>
-  <div class="about-grid">
+  <div class="about-header">
+    <h2>Sobre Acapulco</h2>
+    <p class="about-sub">Conoce la perla del Pacífico mexicano</p>
+  </div>
+
+  <!-- MAPA DE NEGOCIOS — aparece primero -->
+  <div class="mapa-negocios-section">
+    <div class="mapa-header">
+      <div>
+        <h3 class="mapa-titulo">📍 Negocios en AcaConnect</h3>
+        <p class="mapa-sub">Servicios verificados activos en Acapulco</p>
+      </div>
+      <div class="mapa-leyenda">
+        <span class="mapa-leyenda-item"><span class="mapa-dot" style="background:#1565C0;"></span>Experiencias</span>
+        <span class="mapa-leyenda-item"><span class="mapa-dot" style="background:#2E7D32;"></span>Gastronomía</span>
+        <span class="mapa-leyenda-item"><span class="mapa-dot" style="background:#E65100;"></span>Servicios</span>
+        <span class="mapa-leyenda-item"><span class="mapa-dot" style="background:#6A1B9A;"></span>Hospedaje</span>
+      </div>
+    </div>
+    <div id="mapa-acapulco" class="mapa-container"></div>
+    <div class="mapa-stats">
+      <div class="mapa-stat"><span id="mapa-total">—</span><small>Negocios</small></div>
+      <div class="mapa-stat-div"></div>
+      <div class="mapa-stat"><span id="mapa-exp">—</span><small>⛵ Experiencias</small></div>
+      <div class="mapa-stat-div"></div>
+      <div class="mapa-stat"><span id="mapa-gastro">—</span><small>🍴 Gastronomía</small></div>
+      <div class="mapa-stat-div"></div>
+      <div class="mapa-stat"><span id="mapa-serv">—</span><small>💼 Servicios</small></div>
+      <div class="mapa-stat-div"></div>
+      <div class="mapa-stat"><span id="mapa-hosp">—</span><small>🏨 Hospedaje</small></div>
+    </div>
+  </div>
+
+  <!-- CARDS DE ACAPULCO — abajo del mapa, colapsables en móvil -->
+  <details class="about-cards-details" open>
+    <summary class="about-cards-summary">🌊 Conoce más sobre Acapulco</summary>
+    <div class="about-grid">
 
     <!-- 1. Playas -->
     <div class="about-card">
@@ -942,6 +1160,8 @@
         <div class="detail-price-box">
           <div class="detail-price" id="detail-price"></div>
           <div class="detail-price-type" id="detail-price-type"></div>
+          <!-- Horario y disponibilidad en detalle -->
+          <div id="detail-horario-disp" style="margin:10px 0;display:flex;flex-direction:column;gap:6px;"></div>
           <div id="detail-pay-methods" style="margin-bottom:10px;display:flex;gap:6px;flex-wrap:wrap;"></div>
           <button class="btn-pay-service" id="btn-pay" onclick="openPayModal()">🛒 Contratar y Pagar</button>
           <button class="btn-contact-provider" id="btn-contact" onclick="contactProvider()">Contactar proveedor</button>
@@ -1415,4 +1635,3 @@
     <button class="btn-publish" onclick="closePagoSuccess()" style="width:100%;">Cerrar</button>
   </div>
 </div>
-
