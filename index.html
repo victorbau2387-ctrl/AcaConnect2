@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AcaConnect – Tu conexión local</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+<script src="app.js" defer></script>
+<script>
+  emailjs.init('vfk_47-On2SN3GzT1');
+  window.EMAILJS_CONFIG = {
+    serviceId:  'service_jofv7kc',
+    templateId: 'template_ntiki4y',
+    publicKey:  'vfk_47-On2SN3GzT1'
+  };
+</script>
+</head>
+<body>
+
+<nav id="main-nav">
+  <div class="nav-logo" onclick="showPage('home');closeMobileMenu()"><span>Aca</span><span>Connect</span></div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')">Inicio</a></li>
+    <li><a onclick="showPage('marketplace')">Marketplace</a></li>
+    <li><a onclick="showPage(&quot;publish&quot;)">Publicar</a></li>
+    <li><a onclick="showPage('about')">Sobre Acapulco</a></li>
+    <li><a onclick="showPage('contact')">Contacto</a></li>
+    <li><a onclick="showPage('acapoints')" style="color:var(--teal);font-weight:600;">🪙 AcaPoints</a></li>
+  </ul>
+  <div class="nav-actions" id="nav-actions">
+    <!-- Switch de tema -->
+    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema" title="Cambiar tema">
+      <span class="theme-icon" id="theme-icon">🌙</span>
+      <div class="theme-track">
+        <div class="theme-thumb" id="theme-thumb"></div>
+      </div>
+    </button>
+    <button class="btn-login" onclick="openModal('login')">Iniciar Sesión</button>
+    <button class="btn-register" onclick="openModal('register')">Registrarse</button>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menú" style="display:none;">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<!-- Menú móvil -->
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <a onclick="showPage('home');closeMobileMenu()">🏠 Inicio</a>
+  <a onclick="showPage('marketplace');closeMobileMenu()">🛍 Marketplace</a>
+  <a onclick="showPage('publish');closeMobileMenu()">📢 Publicar</a>
+  <a onclick="showPage('about');closeMobileMenu()">🌊 Sobre Acapulco</a>
+  <a onclick="showPage('contact');closeMobileMenu()">✉️ Contacto</a>
+  <a onclick="showPage('acapoints');closeMobileMenu()" style="color:var(--teal);font-weight:600;">🪙 AcaPoints</a>
+</div>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <!-- HERO -->
+  <div class="home-hero" id="home-hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Descubre Acapulco</h1>
+      <p class="sub">Tu conexión local</p>
+      <p class="desc">Explora servicios locales, gastronomía auténtica y hospedaje único.<br>Conecta con la verdadera esencia del puerto.</p>
+      <div class="hero-actions">
+        <button class="btn-hero-primary" onclick="showPage('marketplace')">Explorar Marketplace →</button>
+        <button class="btn-hero-secondary" onclick="showPage(&quot;publish&quot;)">Publicar Servicio</button>
+      </div>
+    </div>
+    <div class="hero-scroll" onclick="document.getElementById('empresa-info').scrollIntoView({behavior:'smooth'})">
+      <span>DESCUBRE MÁS</span><span>↓</span>
+    </div>
+  </div>
+
+  <!-- SECCIÓN EMPRESA -->
+  <div class="empresa-section" id="empresa-info">
+
+    <!-- Intro -->
+    <div class="empresa-intro">
+      <span class="tag">Acapulco · Guerrero · México</span>
+      <h2>Conectando el puerto<br>con su gente</h2>
+      <p>AcaConnect nació en Acapulco de Juárez con una sola idea: crear el espacio digital donde los acapulqueños puedan ofrecer, descubrir y contratar servicios locales de forma sencilla, segura y directa. Sin intermediarios. Sin complicaciones.</p>
+    </div>
+
+    <!-- Misión & Visión -->
+    <div class="mv-grid">
+      <div class="mv-card mision">
+        <div class="mv-card-icon">🎯</div>
+        <h3>Nuestra Misión</h3>
+        <p>Empoderar a los emprendedores y negocios de Acapulco y Guerrero brindándoles una vitrina digital donde puedan llegar a más clientes, crecer su negocio y fortalecer la economía local — todo desde su comunidad.</p>
+        <div class="mv-deco">🎯</div>
+      </div>
+      <div class="mv-card vision">
+        <div class="mv-card-icon">🌊</div>
+        <h3>Nuestra Visión</h3>
+        <p>Ser la plataforma de referencia del estado de Guerrero; el lugar donde cualquier persona que llegue al puerto —o que viva en él— encuentre exactamente lo que necesita, apoyando siempre el talento y los servicios locales.</p>
+        <div class="mv-deco">🌊</div>
+      </div>
+    </div>
+
+    <!-- Valores -->
+    <div class="valores-section">
+      <div class="valores-title">Nuestros Valores</div>
+      <div class="valores-grid">
+        <div class="valor-card">
+          <div class="valor-icon">🤝</div>
+          <h4>Comunidad</h4>
+          <p>Creemos en el poder de apoyarnos entre vecinos. Cada compra local fortalece a Acapulco.</p>
+        </div>
+        <div class="valor-card">
+          <div class="valor-icon">🔒</div>
+          <h4>Confianza</h4>
+          <p>Cada publicación es revisada por nuestro equipo para garantizar servicios seguros y de calidad.</p>
+        </div>
+        <div class="valor-card">
+          <div class="valor-icon">⚡</div>
+          <h4>Agilidad</h4>
+          <p>Conectamos a clientes y proveedores de forma directa, sin trámites ni esperas innecesarias.</p>
+        </div>
+        <div class="valor-card">
+          <div class="valor-icon">🌺</div>
+          <h4>Identidad</h4>
+          <p>Celebramos la cultura, la gastronomía y el espíritu guerrerense en cada rincón de la plataforma.</p>
+        </div>
+        <div class="valor-card">
+          <div class="valor-icon">📈</div>
+          <h4>Crecimiento</h4>
+          <p>Acompañamos a los emprendedores locales a dar el salto digital y hacer crecer sus negocios.</p>
+        </div>
+        <div class="valor-card">
+          <div class="valor-icon">💬</div>
+          <h4>Transparencia</h4>
+          <p>Reseñas reales, precios claros y comunicación directa entre proveedor y cliente.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-band">
+      <div class="stat-item"><div class="num">100%</div><div class="lbl">Servicios locales</div></div>
+      <div class="stat-item"><div class="num">Aca</div><div class="lbl">Hecho en Acapulco</div></div>
+      <div class="stat-item"><div class="num">0</div><div class="lbl">Comisiones ocultas</div></div>
+      <div class="stat-item"><div class="num">24/7</div><div class="lbl">Siempre disponible</div></div>
+    </div>
+
+    <!-- CTA final -->
+    <div class="cta-home">
+      <h3>¿Tienes un negocio en Acapulco?</h3>
+      <p>Publica tu servicio gratis y empieza a conectar con clientes de todo el puerto hoy mismo.</p>
+      <div class="cta-home-actions">
+        <button class="btn-hero-primary" onclick="showPage('publish')">Publicar mi servicio →</button>
+        <button class="btn-hero-secondary" style="background:transparent;border:2px solid var(--teal);color:var(--teal);padding:14px 32px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;cursor:pointer;" onclick="showPage('marketplace')">Ver el Marketplace</button>
+      </div>
+    </div>
+
+  </div><!-- /empresa-section -->
+</div>
+
+<!-- MARKETPLACE -->
+<div id="page-marketplace" class="page">
+  <div class="mkt-header">
+    <h2>Marketplace Local</h2>
+    <p id="mkt-subtitle">Explora los servicios disponibles en Acapulco</p>
+  </div>
+  <div class="mkt-controls">
+    <div class="mkt-search">
+      <svg width="16" height="16" fill="none" stroke="#7A9090" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input id="search-input" type="text" placeholder="Buscar servicios, restaurantes, hospedaje…" oninput="filterCards()"/>
+    </div>
+    <div class="filter-pills">
+      <button class="pill active" data-cat="todos" onclick="filterPill(this)">Todos</button>
+      <button class="pill" data-cat="gastronomia" onclick="filterPill(this)">Gastronomía</button>
+      <button class="pill" data-cat="hospedaje" onclick="filterPill(this)">Hospedaje</button>
+      <button class="pill" data-cat="servicios" onclick="filterPill(this)">Servicios</button>
+      <button class="pill" data-cat="experiencias" onclick="filterPill(this)">Experiencias</button>
+    </div>
+    <select class="sort-select" onchange="sortCards(this.value)">
+      <option value="recientes">Más recientes</option>
+      <option value="precio-asc">Precio: menor a mayor</option>
+      <option value="precio-desc">Precio: mayor a menor</option>
+      <option value="mejor-rating">Mejor calificados</option>
+    </select>
+  </div>
+  <div class="mkt-body">
+    <p class="mkt-count" id="mkt-count"></p>
+    <div class="cards-grid" id="cards-grid">
+      <div class="loading-state"><div class="spinner"></div><p>Cargando servicios...</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- PUBLICAR -->
+<div id="page-publish" class="page">
+  <div class="publish-container">
+
+    <!-- PANEL SOLICITUD VENDEDOR (visible solo para clientes) -->
+    <div id="pv-solicitud-panel" style="display:none;">
+      <div class="pv-sol-hero">
+        <div class="pv-sol-icon">🏪</div>
+        <h2>Quiero ser Vendedor</h2>
+        <p>Para publicar servicios en AcaConnect necesitas verificar tu identidad. Es rápido y gratuito.</p>
+      </div>
+
+      <!-- Estado: pendiente -->
+      <div id="pv-estado-pendiente" style="display:none;">
+        <div class="pv-estado-box pendiente">
+          <span style="font-size:36px;">⏳</span>
+          <div>
+            <strong>Solicitud en revisión</strong>
+            <p>Estamos verificando tus documentos. Te notificaremos cuando tu cuenta sea aprobada como vendedor (máx. 24 hrs).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estado: rechazado -->
+      <div id="pv-estado-rechazado" style="display:none;">
+        <div class="pv-estado-box rechazado">
+          <span style="font-size:36px;">❌</span>
+          <div>
+            <strong>Solicitud rechazada</strong>
+            <p id="pv-motivo-rechazo">Puedes volver a enviar tus documentos.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulario de solicitud -->
+      <div id="pv-form-solicitud" style="display:none;">
+        <div class="form-card">
+          <div class="pv-steps">
+            <div class="pv-step active" id="pvs-1"><span>1</span> Datos</div>
+            <div class="pv-step-line"></div>
+            <div class="pv-step" id="pvs-2"><span>2</span> Documentos</div>
+            <div class="pv-step-line"></div>
+            <div class="pv-step" id="pvs-3"><span>3</span> Envío</div>
+          </div>
+
+          <!-- Paso 1: Datos personales -->
+          <div id="pv-paso-1">
+            <div class="form-group">
+              <label class="form-label">Nombre completo <span class="req">*</span></label>
+              <input class="form-input" id="pv-nombre" type="text" placeholder="Como aparece en tu INE"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">CURP <span class="req">*</span></label>
+              <input class="form-input" id="pv-curp" type="text" maxlength="18"
+                placeholder="XXXX000000XXXXXXXX" oninput="this.value=this.value.toUpperCase()"/>
+              <p class="hint">18 caracteres — puedes consultarla en <a href="https://www.gob.mx/curp/" target="_blank">gob.mx/curp</a></p>
+            </div>
+            <button class="btn-publish" onclick="pvPaso(2)" style="width:100%;">Continuar →</button>
+          </div>
+
+          <!-- Paso 2: Documentos -->
+          <div id="pv-paso-2" style="display:none;">
+            <p class="hint" style="margin-bottom:16px;">📋 Sube fotos claras y legibles. Formatos: JPG, PNG.</p>
+
+            <div class="form-group">
+              <label class="form-label">🪪 INE — Frente <span class="req">*</span></label>
+              <div class="sv-upload-box" onclick="document.getElementById('pv-file-ine').click()">
+                <input type="file" id="pv-file-ine" accept="image/*" style="display:none"
+                  onchange="pvPreview(this,'pv-prev-ine','pv-ph-ine')"/>
+                <img id="pv-prev-ine" style="display:none;width:100%;height:130px;object-fit:cover;border-radius:10px;"/>
+                <div id="pv-ph-ine" class="sv-upload-ph">
+                  <span style="font-size:28px;">🪪</span><span>Foto del frente de tu INE</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">🪪 INE — Reverso</label>
+              <div class="sv-upload-box" onclick="document.getElementById('pv-file-iner').click()">
+                <input type="file" id="pv-file-iner" accept="image/*" style="display:none"
+                  onchange="pvPreview(this,'pv-prev-iner','pv-ph-iner')"/>
+                <img id="pv-prev-iner" style="display:none;width:100%;height:130px;object-fit:cover;border-radius:10px;"/>
+                <div id="pv-ph-iner" class="sv-upload-ph">
+                  <span style="font-size:28px;">🪪</span><span>Reverso del INE (opcional)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">📄 Acta de nacimiento <span class="req">*</span></label>
+              <div class="sv-upload-box" onclick="document.getElementById('pv-file-acta').click()">
+                <input type="file" id="pv-file-acta" accept="image/*" style="display:none"
+                  onchange="pvPreview(this,'pv-prev-acta','pv-ph-acta')"/>
+                <img id="pv-prev-acta" style="display:none;width:100%;height:130px;object-fit:cover;border-radius:10px;"/>
+                <div id="pv-ph-acta" class="sv-upload-ph">
+                  <span style="font-size:28px;">📄</span><span>Foto de tu acta de nacimiento</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">🤳 Selfie sosteniendo tu INE</label>
+              <div class="sv-upload-box" onclick="document.getElementById('pv-file-selfie').click()">
+                <input type="file" id="pv-file-selfie" accept="image/*" capture="user" style="display:none"
+                  onchange="pvPreview(this,'pv-prev-selfie','pv-ph-selfie')"/>
+                <img id="pv-prev-selfie" style="display:none;width:100%;height:130px;object-fit:cover;border-radius:10px;"/>
+                <div id="pv-ph-selfie" class="sv-upload-ph">
+                  <span style="font-size:28px;">🤳</span><span>Selfie con INE (recomendado)</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:10px;margin-top:8px;">
+              <button class="btn-cancel" onclick="pvPaso(1)" style="flex:1;">← Volver</button>
+              <button class="btn-publish" onclick="pvPaso(3)" style="flex:2;">Revisar y enviar →</button>
+            </div>
+          </div>
+
+          <!-- Paso 3: Confirmación -->
+          <div id="pv-paso-3" style="display:none;">
+            <div class="pv-confirm-box">
+              <div style="font-size:36px;margin-bottom:8px;">✅</div>
+              <h3>Todo listo para enviar</h3>
+              <p>Revisa que tus datos sean correctos antes de enviar la solicitud.</p>
+              <div class="pv-resumen" id="pv-resumen"></div>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:12px;">
+              <button class="btn-cancel" onclick="pvPaso(2)" style="flex:1;">← Editar</button>
+              <button class="btn-publish" id="pv-btn-enviar" onclick="pvEnviarSolicitud()" style="flex:2;">
+                🚀 Enviar solicitud
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- FORMULARIO REAL DE PUBLICACIÓN (visible solo para vendedores+) -->
+    <div id="pv-form-publicar">
+      <h2>Publicar un Servicio</h2>
+      <p>Comparte lo que ofreces con miles de visitantes en Acapulco</p>
+      <div class="form-card">
+      <div class="form-group">
+        <label class="form-label">Título del servicio <span class="req">*</span></label>
+        <input class="form-input" type="text" placeholder="Ej: Clases de surf en Playa Revolcadero" id="pub-title"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Categoría <span class="req">*</span></label>
+        <div class="cat-grid">
+          <button class="cat-btn" data-cat="gastronomia" onclick="selectCat(this)"><span class="cat-icon">🍴</span>Gastronomía</button>
+          <button class="cat-btn" data-cat="hospedaje" onclick="selectCat(this)"><span class="cat-icon">🏨</span>Hospedaje</button>
+          <button class="cat-btn" data-cat="servicios" onclick="selectCat(this)"><span class="cat-icon">💼</span>Servicios</button>
+          <button class="cat-btn" data-cat="experiencias" onclick="selectCat(this)"><span class="cat-icon">⛵</span>Experiencias</button>
+        </div>
+      </div>
+      <div class="row-2">
+        <div class="form-group">
+          <label class="form-label">Precio ($MXN) <span class="req">*</span></label>
+          <input class="form-input" type="number" placeholder="Ej: 500" id="pub-price" min="0"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tipo de precio <span class="req">*</span></label>
+          <select class="form-select" id="pub-price-type">
+            <option>precio fijo</option><option>por persona</option><option>por noche</option><option>por grupo</option><option>por hora</option>
+          </select>
+          <p style="font-size:12px;color:var(--text-light);margin-top:6px;">Ej: "500 por persona"</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Ubicación <span class="req">*</span></label>
+        <select class="form-select" id="pub-location">
+          <option value="">Selecciona una zona</option>
+          <optgroup label="🏖 Zonas Turísticas">
+            <option>Zona Diamante</option>
+            <option>Zona Dorada</option>
+            <option>La Quebrada</option>
+            <option>Playa Condesa</option>
+            <option>Playa Icacos</option>
+            <option>Playa Hornos</option>
+            <option>Playa Hornitos</option>
+            <option>Playa Revolcadero</option>
+            <option>Playa Pie de la Cuesta</option>
+            <option>Playa Boca Chica</option>
+            <option>Puerto Marqués</option>
+            <option>Isla La Roqueta</option>
+          </optgroup>
+          <optgroup label="🏙 Zona Urbana">
+            <option>Centro de Acapulco</option>
+            <option>Acapulco Tradicional</option>
+            <option>Caleta y Caletilla</option>
+            <option>El Morro</option>
+            <option>Garita</option>
+            <option>Jardín de la Reina</option>
+            <option>Costa Azul</option>
+            <option>Icacos (Residencial)</option>
+          </optgroup>
+          <optgroup label="🛣 Colonias y Barrios">
+            <option>Ciudad Renacimiento</option>
+            <option>Colonia Moderna</option>
+            <option>El Coloso</option>
+            <option>Las Cruces</option>
+            <option>Lomas de Chapultepec</option>
+            <option>Mozimba</option>
+            <option>Progreso</option>
+            <option>Providencia</option>
+            <option>Santa Cruz</option>
+            <option>Tres Palos</option>
+            <option>El Arenal</option>
+            <option>La Sabana</option>
+          </optgroup>
+          <optgroup label="🌿 Municipios Cercanos">
+            <option>Coyuca de Benítez</option>
+            <option>San Marcos</option>
+            <option>Técpan de Galeana</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">
+          Enlace de Google Maps
+          <span style="font-weight:400;color:var(--text-light);font-size:12px;margin-left:6px;">(opcional)</span>
+        </label>
+        <input class="form-input" type="url" id="pub-maps-url"
+          placeholder="https://maps.app.goo.gl/..."
+          style="font-size:13px;"/>
+        <p style="font-size:12px;color:var(--text-light);margin-top:6px;line-height:1.5;">
+          📌 Abre Google Maps, busca tu negocio o dirección, toca <strong>Compartir → Copiar enlace</strong> y pégalo aquí.
+        </p>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Descripción <span class="req">*</span></label>
+        <textarea class="form-textarea" placeholder="Describe tu servicio en detalle…" id="pub-desc" maxlength="500" oninput="updateCount()"></textarea>
+        <div class="char-count" id="char-count">0/500</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Foto principal <span class="req">*</span></label>
+        <div class="foto-upload-area" id="main-drop" ondragover="handleDrag(event,'main-drop')" ondragleave="handleDragLeave(event,'main-drop')" ondrop="handleDrop(event,'main',0)">
+          <input type="file" accept="image/*" onchange="handleFileSelect(this,'main',0)"/>
+          <div class="foto-upload-icon">📷</div>
+          <p>Arrastra tu foto aquí o haz clic para seleccionar</p>
+          <small>JPG, PNG o WEBP · Máximo 5MB</small>
+        </div>
+        <div class="upload-progress" id="prog-main"><div class="upload-progress-bar" id="progbar-main"></div></div>
+        <div class="foto-preview-grid" id="preview-main"></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Fotos adicionales <span style="font-weight:400;color:var(--text-light)">(hasta 4)</span></label>
+        <div class="foto-preview-grid" style="grid-template-columns:repeat(4,1fr);">
+          <div class="foto-extra-slot" id="slot-0" ondragover="handleDrag(event,'slot-0')" ondragleave="handleDragLeave(event,'slot-0')" ondrop="handleDrop(event,'extra',0)">
+            <input type="file" accept="image/*" onchange="handleFileSelect(this,'extra',0)"/>
+            <span class="plus">+</span>
+          </div>
+          <div class="foto-extra-slot" id="slot-1" ondragover="handleDrag(event,'slot-1')" ondragleave="handleDragLeave(event,'slot-1')" ondrop="handleDrop(event,'extra',1)">
+            <input type="file" accept="image/*" onchange="handleFileSelect(this,'extra',1)"/>
+            <span class="plus">+</span>
+          </div>
+          <div class="foto-extra-slot" id="slot-2" ondragover="handleDrag(event,'slot-2')" ondragleave="handleDragLeave(event,'slot-2')" ondrop="handleDrop(event,'extra',2)">
+            <input type="file" accept="image/*" onchange="handleFileSelect(this,'extra',2)"/>
+            <span class="plus">+</span>
+          </div>
+          <div class="foto-extra-slot" id="slot-3" ondragover="handleDrag(event,'slot-3')" ondragleave="handleDragLeave(event,'slot-3')" ondrop="handleDrop(event,'extra',3)">
+            <input type="file" accept="image/*" onchange="handleFileSelect(this,'extra',3)"/>
+            <span class="plus">+</span>
+          </div>
+        </div>
+        <p class="hint" style="margin-top:10px;">Muestra tu servicio desde diferentes ángulos para atraer más clientes.</p>
+      </div>
+      <div class="form-group">
+        <label class="form-label">WhatsApp de contacto <span class="req">*</span></label>
+        <div style="display:flex;align-items:center;border:1.5px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .2s;" id="pub-wa-wrap">
+          <span style="padding:0 12px;font-size:14px;color:var(--text-mid);border-right:1.5px solid var(--border);line-height:48px;background:#FAFAFA;">🇲🇽 +52</span>
+          <input style="border:none;outline:none;padding:13px 14px;font-family:'DM Sans',sans-serif;font-size:14px;flex:1;" type="tel" id="pub-whatsapp" maxlength="10" placeholder="10 dígitos (ej: 7441234567)"/>
+        </div>
+        <p class="hint">Los clientes te contactarán por WhatsApp. Si ya tienes teléfono en tu perfil, se usará ese por defecto.</p>
+      </div>
+      <!-- MÉTODOS DE PAGO ACEPTADOS -->
+      <div class="form-group">
+        <label class="form-label">Métodos de pago que aceptas <span class="req">*</span></label>
+        <p class="hint" style="margin-bottom:10px;">Selecciona al menos uno. Los clientes verán estas opciones al contratar tu servicio.</p>
+        <div class="payment-methods-grid" id="pub-payment-methods">
+          <button type="button" class="pay-method-btn active" data-method="efectivo" onclick="togglePayMethod(this)">
+            <span class="pay-icon">💵</span>
+            <span class="pay-label">Efectivo</span>
+            <span class="pay-check">✓</span>
+          </button>
+          <button type="button" class="pay-method-btn active" data-method="tarjeta" onclick="togglePayMethod(this)">
+            <span class="pay-icon">💳</span>
+            <span class="pay-label">Tarjeta</span>
+            <span class="pay-check">✓</span>
+          </button>
+          <button type="button" class="pay-method-btn active" data-method="acapoints" onclick="togglePayMethod(this)">
+            <span class="pay-icon">🪙</span>
+            <span class="pay-label">AcaPoints</span>
+            <span class="pay-check">✓</span>
+          </button>
+        </div>
+        <p class="hint" style="margin-top:8px;">🪙 <strong>AcaPoints</strong> es la moneda virtual de AcaConnect. 1 AcaPoint = $1 MXN.</p>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn-publish" onclick="publishService()">Publicar Servicio</button>
+        <button class="btn-cancel" onclick="showPage('marketplace')">Cancelar</button>
+      </div>
+    </div>
+    </div><!-- /pv-form-publicar -->
+  </div>
+</div>
+
+<!-- SOBRE ACAPULCO -->
+<div id="page-about" class="page">
+  <h2>Sobre Acapulco</h2>
+  <p class="about-sub">Conoce la perla del Pacífico mexicano</p>
+  <div class="about-grid">
+
+    <!-- 1. Playas -->
+    <div class="about-card">
+      <div class="about-slider" id="slider-0">
+        <div class="about-slides">
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1598363460575-485fb6bea99a?w=600&q=75&fit=crop')"></div>
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=75&fit=crop')"></div>
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&q=75&fit=crop')"></div>
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1473116763249-2faaef81ccda?w=600&q=75&fit=crop')"></div>
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=600&q=75&fit=crop')"></div>
+        </div>
+        <button class="slider-btn slider-prev" onclick="slideMove('slider-0',-1)">‹</button>
+        <button class="slider-btn slider-next" onclick="slideMove('slider-0',1)">›</button>
+        <div class="slider-dots" id="dots-slider-0"></div>
+      </div>
+      <div class="about-card-body">
+        <div class="icon">🌊</div>
+        <h4>Playas Legendarias</h4>
+        <p>Acapulco cuenta con más de 20 playas de arena dorada, desde la tranquila Playa Pie de la Cuesta hasta la animada Playa Condesa en la Zona Dorada.</p>
+      </div>
+    </div>
+
+    <!-- 2. Cultura -->
+    <div class="about-card">
+      <div class="about-slider" id="slider-1">
+        <div class="about-slides">
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1518638150340-f706e86654de?w=600&q=75&fit=crop')"></div>
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=600&q=75&fit=crop')"></div>
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=600&q=75&fit=crop')"></div>
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1585208798174-6cedd86e019a?w=600&q=75&fit=crop')"></div>
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=600&q=75&fit=crop')"></div>
+        </div>
+        <button class="slider-btn slider-prev" onclick="slideMove('slider-1',-1)">‹</button>
+        <button class="slider-btn slider-next" onclick="slideMove('slider-1',1)">›</button>
+        <div class="slider-dots" id="dots-slider-1"></div>
+      </div>
+      <div class="about-card-body">
+        <div class="icon">🎭</div>
+        <h4>Cultura y Tradición</h4>
+        <p>Hogar de los famosos Clavadistas de La Quebrada, una tradición de más de 80 años que asombra a visitantes con clavados desde 35 metros de altura.</p>
+      </div>
+    </div>
+
+    <!-- 3. Gastronomía -->
+    <div class="about-card">
+      <div class="about-slider" id="slider-2">
+        <div class="about-slides">
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&q=75&fit=crop')"></div>
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=600&q=75&fit=crop')"></div>
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=600&q=75&fit=crop')"></div>
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&q=75&fit=crop')"></div>
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=600&q=75&fit=crop')"></div>
+        </div>
+        <button class="slider-btn slider-prev" onclick="slideMove('slider-2',-1)">‹</button>
+        <button class="slider-btn slider-next" onclick="slideMove('slider-2',1)">›</button>
+        <div class="slider-dots" id="dots-slider-2"></div>
+      </div>
+      <div class="about-card-body">
+        <div class="icon">🍤</div>
+        <h4>Gastronomía Única</h4>
+        <p>El pozole guerrerense, los tacos de pescado, el ceviche estilo Acapulco y los tamales de rajas son solo algunos de los sabores que definen al puerto.</p>
+      </div>
+    </div>
+
+    <!-- 4. Naturaleza -->
+    <div class="about-card">
+      <div class="about-slider" id="slider-3">
+        <div class="about-slides">
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&q=75&fit=crop')"></div>
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&q=75&fit=crop')"></div>
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=600&q=75&fit=crop')"></div>
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1474314170901-f351b68f544f?w=600&q=75&fit=crop')"></div>
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1504198458649-3128b932f49e?w=600&q=75&fit=crop')"></div>
+        </div>
+        <button class="slider-btn slider-prev" onclick="slideMove('slider-3',-1)">‹</button>
+        <button class="slider-btn slider-next" onclick="slideMove('slider-3',1)">›</button>
+        <div class="slider-dots" id="dots-slider-3"></div>
+      </div>
+      <div class="about-card-body">
+        <div class="icon">🌺</div>
+        <h4>Naturaleza Exuberante</h4>
+        <p>Rodeado de la Sierra Madre del Sur, el puerto ofrece selvas tropicales, manglares, lagunas y una biodiversidad marina de gran riqueza.</p>
+      </div>
+    </div>
+
+    <!-- 5. Hospedaje -->
+    <div class="about-card">
+      <div class="about-slider" id="slider-4">
+        <div class="about-slides">
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=75&fit=crop')"></div>
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=75&fit=crop')"></div>
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=75&fit=crop')"></div>
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=75&fit=crop')"></div>
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=600&q=75&fit=crop')"></div>
+        </div>
+        <button class="slider-btn slider-prev" onclick="slideMove('slider-4',-1)">‹</button>
+        <button class="slider-btn slider-next" onclick="slideMove('slider-4',1)">›</button>
+        <div class="slider-dots" id="dots-slider-4"></div>
+      </div>
+      <div class="about-card-body">
+        <div class="icon">🏨</div>
+        <h4>Hospedaje para Todos</h4>
+        <p>Desde grandes cadenas hoteleras en la Zona Diamante hasta casas de huéspedes familiares en el Acapulco Tradicional, hay opciones para cada presupuesto.</p>
+      </div>
+    </div>
+
+    <!-- 6. Experiencias del Mar -->
+    <div class="about-card">
+      <div class="about-slider" id="slider-5">
+        <div class="about-slides">
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=75&fit=crop')"></div>
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1530053969600-caed2596d242?w=600&q=75&fit=crop')"></div>
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=600&q=75&fit=crop')"></div>
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1559825481-12a05cc00344?w=600&q=75&fit=crop')"></div>
+          <div class="about-slide" style="background-image:url('https://images.unsplash.com/photo-1484821582734-6692f8bffd5c?w=600&q=75&fit=crop')"></div>
+        </div>
+        <button class="slider-btn slider-prev" onclick="slideMove('slider-5',-1)">‹</button>
+        <button class="slider-btn slider-next" onclick="slideMove('slider-5',1)">›</button>
+        <div class="slider-dots" id="dots-slider-5"></div>
+      </div>
+      <div class="about-card-body">
+        <div class="icon">⛵</div>
+        <h4>Experiencias del Mar</h4>
+        <p>Pesca deportiva, buceo, snorkel, jet ski, parasailing y tours en lancha son algunas de las actividades acuáticas que ofrece la bahía de Santa Lucía.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ACAPOINTS -->
+<div id="page-acapoints" class="page">
+  <div class="acap-page-wrapper">
+
+    <!-- HERO -->
+    <div class="acap-hero">
+      <div class="acap-hero-coin">🪙</div>
+      <h2>AcaPoints</h2>
+      <p>La moneda oficial de AcaConnect. Úsalos para contratar servicios en segundos.</p>
+      <div class="acap-hero-balance" id="acap-hero-balance">
+        <span class="acap-bal-label">Tu saldo actual</span>
+        <span class="acap-bal-num" id="acap-page-balance">— AcaPoints</span>
+        <span class="acap-bal-sub">≈ $<span id="acap-page-mxn">0</span> MXN</span>
+      </div>
+    </div>
+
+    <!-- INFO CHIPS -->
+    <div class="acap-chips">
+      <div class="acap-chip">⚡ 1 AcaPoint = $1 MXN</div>
+      <div class="acap-chip">🔒 100% simulado · sin cargos reales</div>
+      <div class="acap-chip">🎁 Bonus de hasta 25%</div>
+    </div>
+
+    <!-- PAQUETES -->
+    <div class="acap-section">
+      <h3 class="acap-section-title">Elige tu paquete</h3>
+      <div class="acap-packages-grid">
+
+        <div class="acap-pkg" data-mxn="50" data-pts="42" onclick="selectAcapPkg(this)">
+          <div class="acap-pkg-coin">🪙</div>
+          <div class="acap-pkg-pts">42</div>
+          <div class="acap-pkg-ptslabel">AcaPoints</div>
+          <div class="acap-pkg-price">$50 MXN</div>
+          <div class="acap-pkg-bonus">+16 pts bonus</div>
+        </div>
+
+        <div class="acap-pkg" data-mxn="100" data-pts="85" onclick="selectAcapPkg(this)">
+          <div class="acap-pkg-coin">🪙</div>
+          <div class="acap-pkg-pts">85</div>
+          <div class="acap-pkg-ptslabel">AcaPoints</div>
+          <div class="acap-pkg-price">$100 MXN</div>
+          <div class="acap-pkg-bonus">+35 pts bonus</div>
+        </div>
+
+        <div class="acap-pkg popular" data-mxn="200" data-pts="170" onclick="selectAcapPkg(this)">
+          <div class="acap-pkg-popular-badge">⭐ Popular</div>
+          <div class="acap-pkg-coin">🪙</div>
+          <div class="acap-pkg-pts">170</div>
+          <div class="acap-pkg-ptslabel">AcaPoints</div>
+          <div class="acap-pkg-price">$200 MXN</div>
+          <div class="acap-pkg-bonus">+70 pts bonus</div>
+        </div>
+
+        <div class="acap-pkg" data-mxn="500" data-pts="425" onclick="selectAcapPkg(this)">
+          <div class="acap-pkg-coin">🪙</div>
+          <div class="acap-pkg-pts">425</div>
+          <div class="acap-pkg-ptslabel">AcaPoints</div>
+          <div class="acap-pkg-price">$500 MXN</div>
+          <div class="acap-pkg-bonus">+175 pts bonus</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FORMULARIO DE COMPRA -->
+    <div class="acap-buy-form" id="acap-buy-form" style="display:none;">
+      <h3 class="acap-section-title">💳 Datos de pago <span style="font-size:13px;font-weight:400;color:var(--text-light)">(simulado)</span></h3>
+      <div class="acap-selected-summary" id="acap-selected-summary"></div>
+      <div class="form-card" style="padding:24px 20px;margin-top:16px;">
+        <div class="pay-info-box" style="background:#EBF5FF;border-color:#BBDAFF;margin-bottom:20px;">
+          <span>🔒</span>
+          <div><strong>Simulación de pago</strong><p>Ningún cargo real será realizado. Solo para demostración del sistema.</p></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Número de tarjeta</label>
+          <input class="form-input" id="acap-card-num" type="text" placeholder="•••• •••• •••• ••••" maxlength="19" oninput="formatCardNumber(this)"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Titular de la tarjeta</label>
+          <input class="form-input" id="acap-card-name" type="text" placeholder="NOMBRE APELLIDO"/>
+        </div>
+        <div class="row-2">
+          <div class="form-group">
+            <label class="form-label">Fecha de vencimiento</label>
+            <input class="form-input" id="acap-card-exp" type="text" placeholder="MM/AA" maxlength="5" oninput="formatExpiry(this)"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">CVV</label>
+            <input class="form-input" id="acap-card-cvv" type="text" placeholder="123" maxlength="3"/>
+          </div>
+        </div>
+        <button class="btn-publish" id="btn-acap-buy" onclick="confirmPageBuyPoints()" style="width:100%;margin-top:8px;">
+          🪙 Comprar AcaPoints
+        </button>
+      </div>
+    </div>
+
+    <!-- HISTORIAL -->
+    <div class="acap-section" id="acap-historial-section" style="display:none;">
+      <h3 class="acap-section-title">📋 Historial de movimientos</h3>
+      <div id="acap-historial-list"></div>
+    </div>
+
+    <!-- CTA si no está logueado -->
+    <div class="acap-login-cta" id="acap-login-cta" style="display:none;">
+      <div style="font-size:48px;margin-bottom:12px;">🔐</div>
+      <h3>Inicia sesión para comprar AcaPoints</h3>
+      <p>Necesitas una cuenta para gestionar tu saldo.</p>
+      <button class="btn-publish" onclick="openModal('login')" style="margin-top:16px;padding:14px 40px;">Iniciar Sesión</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- CONTACTO -->
+<div id="page-contact" class="page">
+  <div class="contact-wrapper">
+    <h2>Contacto</h2>
+    <p class="contact-sub">Estamos para ayudarte a conectar con lo mejor de Acapulco</p>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p>AcaConnect es una plataforma creada por y para los acapulqueños. Si tienes dudas, sugerencias o quieres saber cómo publicar tu servicio, no dudes en escribirnos.</p>
+        <div class="contact-detail"><div class="dot">📧</div><span>hola@acaconnect.mx</span></div>
+        <div class="contact-detail"><div class="dot">📱</div><span>+52 744 123 4567</span></div>
+        <div class="contact-detail"><div class="dot">📍</div><span>Acapulco de Juárez, Guerrero, México</span></div>
+      </div>
+      <div class="form-card" style="padding:36px;">
+        <div class="form-group"><label class="form-label">Tu nombre</label><input class="form-input" type="text" placeholder="Nombre completo" id="contact-nombre"/></div>
+        <div class="form-group"><label class="form-label">Correo electrónico</label><input class="form-input" type="email" placeholder="correo@ejemplo.com" id="contact-email"/></div>
+        <div class="form-group"><label class="form-label">Mensaje</label><textarea class="form-textarea" placeholder="¿En qué podemos ayudarte?" id="contact-mensaje"></textarea></div>
+        <button class="btn-publish" onclick="sendContact()">Enviar Mensaje</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="modal-overlay" id="auth-modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div class="modal-logo"><span>Aca</span><span>Connect</span></div>
+    <div class="modal-tabs">
+      <div class="modal-tab active" onclick="switchTab('login')">Iniciar Sesión</div>
+      <div class="modal-tab" onclick="switchTab('register')">Registrarse</div>
+    </div>
+    <div class="modal-form active" id="tab-login">
+      <div class="form-group"><label class="form-label">Correo electrónico</label><input class="form-input" type="email" placeholder="correo@ejemplo.com" id="login-email"/></div>
+      <div class="form-group"><label class="form-label">Contraseña</label>
+        <div class="pass-wrapper">
+          <input class="form-input" type="password" placeholder="••••••••" id="login-pass"/>
+          <button type="button" class="btn-eye" onclick="togglePass('login-pass',this)" tabindex="-1">👁</button>
+        </div>
+      </div>
+      <button class="btn-modal-submit" onclick="doLogin()">Iniciar Sesión</button>
+      <div style="text-align:center;margin-top:14px;">
+        <a onclick="openForgotPass()" style="font-size:13px;color:var(--teal);cursor:pointer;font-weight:500;text-decoration:none;">¿Olvidaste tu contraseña?</a>
+      </div>
+    </div>
+    <div class="modal-form" id="tab-register">
+
+      <!-- PASO 1: Datos -->
+      <div id="reg-step-datos">
+        <div class="form-group"><label class="form-label">Nombre completo</label><input class="form-input" type="text" placeholder="Tu nombre" id="reg-name"/></div>
+        <div class="form-group"><label class="form-label">Correo electrónico</label><input class="form-input" type="email" placeholder="correo@ejemplo.com" id="reg-email"/></div>
+        <div class="form-group"><label class="form-label">Número de teléfono <span style="font-weight:400;color:var(--text-light)">(opcional)</span></label>
+          <div style="display:flex;align-items:center;border:1.5px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .2s;" onfocusin="this.style.borderColor='var(--teal)'" onfocusout="this.style.borderColor='var(--border)'">
+            <span style="padding:0 12px;font-size:14px;color:var(--text-mid);border-right:1.5px solid var(--border);line-height:48px;background:#FAFAFA;">🇲🇽 +52</span>
+            <input style="border:none;outline:none;padding:13px 14px;font-family:'DM Sans',sans-serif;font-size:14px;flex:1;" type="tel" placeholder="744 123 4567" id="reg-phone" maxlength="10"/>
+          </div>
+        </div>
+        <div class="form-group"><label class="form-label">Contraseña</label>
+          <div class="pass-wrapper">
+            <input class="form-input" type="password" placeholder="Mínimo 6 caracteres" id="reg-pass"/>
+            <button type="button" class="btn-eye" onclick="togglePass('reg-pass',this)" tabindex="-1">👁</button>
+          </div>
+        </div>
+        <button class="btn-modal-submit" id="btn-reg-continuar" onclick="doRegister()">Continuar →</button>
+      </div>
+
+      <!-- PASO 2: Verificar código -->
+      <div id="reg-step-codigo" style="display:none;">
+        <div style="text-align:center;margin-bottom:20px;">
+          <div style="font-size:40px;margin-bottom:10px;">📧</div>
+          <h4 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--teal-dark);margin-bottom:8px;">Verifica tu correo</h4>
+          <p style="font-size:13px;color:var(--text-mid);line-height:1.6;">Enviamos un código de 6 dígitos a<br><strong id="reg-email-display" style="color:var(--teal);"></strong></p>
+        </div>
+        <div class="form-group">
+          <label class="form-label" style="text-align:center;display:block;">Código de verificación</label>
+          <input class="form-input" type="text" id="reg-codigo" maxlength="6" placeholder="000000"
+            style="text-align:center;font-size:28px;font-weight:700;letter-spacing:10px;padding:14px;"
+            oninput="this.value=this.value.replace(/[^0-9]/g,'')"/>
+        </div>
+        <button class="btn-modal-submit" onclick="confirmarRegistro()">✅ Verificar y crear cuenta</button>
+        <div style="display:flex;justify-content:space-between;margin-top:12px;">
+          <button onclick="volverRegDatos()" style="background:none;border:none;font-size:13px;color:var(--text-mid);cursor:pointer;font-family:'DM Sans',sans-serif;">← Cambiar datos</button>
+          <button onclick="reenviarCodigoReg()" id="btn-reenviar-reg" style="background:none;border:none;font-size:13px;color:var(--teal);cursor:pointer;font-weight:600;font-family:'DM Sans',sans-serif;">Reenviar código</button>
+        </div>
+        <p style="text-align:center;font-size:12px;color:var(--text-light);margin-top:8px;">Expira en <span id="reg-timer">10:00</span></p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL OLVIDÉ MI CONTRASEÑA -->
+<div class="modal-overlay" id="forgot-overlay" onclick="if(event.target===this)closeForgotPass()">
+  <div class="modal" style="max-width:420px;">
+    <button class="modal-close" onclick="closeForgotPass()">×</button>
+    <div class="modal-logo"><span>Aca</span><span>Connect</span></div>
+
+    <!-- Paso 1: Pedir correo -->
+    <div id="forgot-step-email">
+      <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--teal-dark);margin-bottom:8px;text-align:center;">Recupera tu contraseña</h3>
+      <p style="font-size:14px;color:var(--text-mid);text-align:center;margin-bottom:22px;line-height:1.5;">Te enviaremos un código de verificación de 6 dígitos a tu correo.</p>
+      <div class="form-group">
+        <label class="form-label">Correo electrónico</label>
+        <input class="form-input" type="email" placeholder="correo@ejemplo.com" id="forgot-email"/>
+      </div>
+      <button class="btn-modal-submit" onclick="sendForgotCode()">Enviar código</button>
+    </div>
+
+    <!-- Paso 2: Verificar código -->
+    <div id="forgot-step-code" style="display:none;">
+      <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--teal-dark);margin-bottom:8px;text-align:center;">Verifica el código</h3>
+      <p style="font-size:14px;color:var(--text-mid);text-align:center;margin-bottom:22px;line-height:1.5;">Ingresa el código de 6 dígitos que enviamos a <strong id="forgot-email-display"></strong></p>
+      <div class="form-group">
+        <label class="form-label">Código de verificación</label>
+        <input class="form-input" type="text" placeholder="000000" id="forgot-code" maxlength="6" style="text-align:center;font-size:22px;letter-spacing:8px;font-weight:600;"/>
+      </div>
+      <button class="btn-modal-submit" onclick="verifyForgotCode()">Verificar código</button>
+      <div style="text-align:center;margin-top:12px;">
+        <a onclick="sendForgotCode()" style="font-size:13px;color:var(--teal);cursor:pointer;font-weight:500;">Reenviar código</a>
+      </div>
+    </div>
+
+    <!-- Paso 3: Nueva contraseña -->
+    <div id="forgot-step-newpass" style="display:none;">
+      <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--teal-dark);margin-bottom:8px;text-align:center;">Nueva contraseña</h3>
+      <p style="font-size:14px;color:var(--text-mid);text-align:center;margin-bottom:22px;line-height:1.5;">Crea una nueva contraseña segura para tu cuenta.</p>
+      <div class="form-group">
+        <label class="form-label">Nueva contraseña</label>
+        <div class="pass-wrapper">
+          <input class="form-input" type="password" placeholder="Mínimo 6 caracteres" id="forgot-newpass"/>
+          <button type="button" class="btn-eye" onclick="togglePass('forgot-newpass',this)" tabindex="-1">👁</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Confirmar contraseña</label>
+        <div class="pass-wrapper">
+          <input class="form-input" type="password" placeholder="Repite la contraseña" id="forgot-newpass2"/>
+          <button type="button" class="btn-eye" onclick="togglePass('forgot-newpass2',this)" tabindex="-1">👁</button>
+        </div>
+      </div>
+      <button class="btn-modal-submit" onclick="resetPassword()">Actualizar contraseña</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL DETALLE SERVICIO -->
+<div class="detail-overlay" id="detail-overlay" onclick="closeDetailOutside(event)">
+  <div class="detail-modal" id="detail-modal">
+    <button class="detail-close" onclick="closeDetail()">×</button>
+
+    <!-- Galería -->
+    <div class="detail-gallery">
+      <img class="detail-main-img" id="detail-main-img" src="" alt=""/>
+      <div class="detail-thumbs" id="detail-thumbs"></div>
+    </div>
+
+    <!-- Body -->
+    <div class="detail-body">
+      <div class="detail-main">
+        <div class="detail-cat-badge" id="detail-cat-badge"></div>
+        <h2 class="detail-title" id="detail-title"></h2>
+        <div class="detail-rating-row">
+          <div class="stars-row" id="detail-stars"></div>
+          <span class="detail-rating-num" id="detail-rating-num"></span>
+          <span class="detail-reviews" id="detail-reviews"></span>
+        </div>
+        <div class="detail-section-label">Sobre este servicio</div>
+        <p class="detail-desc" id="detail-desc"></p>
+        <div class="detail-location" id="detail-location">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span id="detail-loc-text"></span>
+        </div>
+        <div id="detail-maps-link" style="display:none;margin-top:8px;">
+          <a id="detail-maps-a" href="#" target="_blank" rel="noopener"
+            style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#fff;background:#1A73E8;padding:7px 14px;border-radius:100px;text-decoration:none;transition:background .2s;"
+            onmouseover="this.style.background='#1558b0'" onmouseout="this.style.background='#1A73E8'">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            Ver en Google Maps
+          </a>
+        </div>
+        <div class="detail-provider" id="detail-provider"></div>
+      </div>
+
+      <div class="detail-sidebar">
+        <div class="detail-price-box">
+          <div class="detail-price" id="detail-price"></div>
+          <div class="detail-price-type" id="detail-price-type"></div>
+          <div id="detail-pay-methods" style="margin-bottom:10px;display:flex;gap:6px;flex-wrap:wrap;"></div>
+          <button class="btn-pay-service" id="btn-pay" onclick="openPayModal()">🛒 Contratar y Pagar</button>
+          <button class="btn-contact-provider" id="btn-contact" onclick="contactProvider()">Contactar proveedor</button>
+          <button class="btn-share" onclick="shareService()">🔗 Compartir</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reseñas -->
+    <div class="resenas-section" id="resenas-section">
+      <div class="resenas-header">
+        <h3>Reseñas</h3>
+      </div>
+      <!-- Resumen calificación -->
+      <div class="resenas-summary" id="resenas-summary" style="display:none;">
+        <div class="resenas-big-num" id="resena-avg">0</div>
+        <div class="resenas-summary-right">
+          <div class="resenas-summary-stars" id="resena-avg-stars"></div>
+          <div class="resenas-total" id="resena-total"></div>
+          <div id="resena-dist" style="margin-top:10px;"></div>
+        </div>
+      </div>
+      <!-- Formulario o prompt login -->
+      <div id="resena-form-area"></div>
+      <!-- Lista -->
+      <div id="resenas-list"><div class="resenas-empty">Cargando reseñas...</div></div>
+    </div>
+
+    <!-- Similares -->
+    <div class="detail-similares">
+      <h3>Más en <span id="detail-cat-label-sim"></span> <a onclick="filterByCatAndClose()">Ver todos →</a></h3>
+      <div class="similares-grid" id="similares-grid"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL EDITAR PERFIL -->
+<div class="modal-overlay" id="profile-modal-overlay" onclick="if(event.target===this)closeProfileModal()">
+  <div class="profile-modal">
+    <button class="modal-close" onclick="closeProfileModal()">×</button>
+    <h3>Editar Perfil</h3>
+    <div class="avatar-upload">
+      <div class="avatar-big" id="avatar-big-preview" onclick="document.getElementById('avatar-file-input').click()">
+        <span id="avatar-big-letter"></span>
+        <div class="avatar-big-overlay">📷</div>
+        <input type="file" id="avatar-file-input" accept="image/*" style="display:none" onchange="previewAvatar(this)"/>
+      </div>
+      <span class="avatar-upload-hint">Toca para cambiar tu foto</span>
+    </div>
+    <div class="form-group"><label class="form-label">Nombre completo</label><input class="form-input" type="text" id="profile-nombre"/></div>
+    <div class="form-group"><label class="form-label">Teléfono</label>
+      <div style="display:flex;align-items:center;border:1.5px solid var(--border);border-radius:12px;overflow:hidden;" onfocusin="this.style.borderColor='var(--teal)'" onfocusout="this.style.borderColor='var(--border)'">
+        <span style="padding:0 12px;font-size:14px;color:var(--text-mid);border-right:1.5px solid var(--border);line-height:48px;background:#FAFAFA;">🇲🇽 +52</span>
+        <input style="border:none;outline:none;padding:13px 14px;font-family:'DM Sans',sans-serif;font-size:14px;flex:1;" type="tel" id="profile-telefono" maxlength="10"/>
+      </div>
+    </div>
+    <div class="form-group"><label class="form-label">Correo electrónico</label><input class="form-input" type="email" id="profile-email" disabled style="opacity:.6;cursor:not-allowed;"/></div>
+    <button class="btn-publish" onclick="saveProfile()">Guardar Cambios</button>
+  </div>
+</div>
+
+<!-- MODAL MIS PUBLICACIONES -->
+<div class="modal-overlay" id="mispub-modal-overlay" onclick="if(event.target===this)closeMisPub()">
+  <div class="mispub-modal">
+    <button class="modal-close" onclick="closeMisPub()">×</button>
+    <h3>Mis Publicaciones</h3>
+    <div id="mispub-content"><div class="loading-state"><div class="spinner"></div><p>Cargando...</p></div></div>
+  </div>
+</div>
+
+<!-- PANEL ADMIN -->
+<div class="admin-overlay" id="admin-panel" onclick="closeAdminOutside(event)">
+  <div class="admin-panel">
+    <div class="admin-header">
+      <div style="display:flex;align-items:center;">
+        <h2>Panel de Administración</h2>
+        <span class="badge-count" id="admin-badge">0</span>
+      </div>
+      <button class="modal-close" style="position:static;font-size:26px;" onclick="closeAdmin()">×</button>
+    </div>
+    <div class="admin-tabs">
+      <button class="admin-tab active" data-tab="pendientes" onclick="switchAdminTab(this)">⏳ Pendientes</button>
+      <button class="admin-tab" data-tab="activos" onclick="switchAdminTab(this)">✅ Activos</button>
+      <button class="admin-tab" data-tab="rechazados" onclick="switchAdminTab(this)">❌ Rechazados</button>
+
+      <button class="admin-tab" data-tab="mensajes" onclick="switchAdminTab(this)" id="tab-mensajes" style="position:relative;">
+        ✉️ Mensajes<span class="msg-badge" id="msg-badge" style="display:none;background:var(--orange);color:#fff;border-radius:100px;font-size:11px;font-weight:700;padding:1px 7px;margin-left:6px;"></span>
+      </button>
+      <button class="admin-tab" data-tab="ganancias" onclick="switchAdminTab(this)" style="color:#2e7d32;font-weight:700;">
+        💰 Ganancias
+      </button>
+      <button class="admin-tab" data-tab="roles" onclick="switchAdminTab(this)" style="color:#7B1FA2;font-weight:700;">
+        🎭 Roles
+      </button>
+      <button class="admin-tab" data-tab="verificaciones" onclick="switchAdminTab(this)" style="color:#1565C0;font-weight:700;" id="tab-verificaciones">
+        🪪 Verificaciones
+      </button>
+      <button class="admin-tab" data-tab="analytics" onclick="switchAdminTab(this)" style="color:#6A1B9A;font-weight:700;">
+        📊 Analytics
+      </button>
+    </div>
+    <div class="admin-list" id="admin-list">
+      <div class="loading-state"><div class="spinner"></div><p>Cargando...</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL NOTIFICACIONES -->
+<div class="modal-overlay" id="notif-overlay" onclick="if(event.target===this)closeNotificaciones()">
+  <div class="notif-modal">
+    <div class="notif-modal-header">
+      <h3>🔔 Notificaciones</h3>
+      <button class="modal-close" style="position:static;" onclick="closeNotificaciones()">×</button>
+    </div>
+    <div style="padding:8px 28px 6px;border-bottom:1px solid var(--border);display:flex;justify-content:flex-end;flex-shrink:0;">
+      <button class="notif-mark-all" onclick="marcarTodasLeidas()">Marcar todas como leídas</button>
+    </div>
+    <div class="notif-list" id="notif-list">
+      <div class="loading-state"><div class="spinner"></div><p>Cargando...</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- MODAL EDITAR PUBLICACIÓN -->
+<div class="modal-overlay" id="edit-pub-overlay" onclick="if(event.target===this)closeEditPub()">
+  <div class="edit-pub-modal">
+    <button class="modal-close" onclick="closeEditPub()">×</button>
+    <h3>✏️ Editar publicación</h3>
+    <input type="hidden" id="edit-pub-id"/>
+    <div class="form-group">
+      <label class="form-label">Título <span class="req">*</span></label>
+      <input class="form-input" type="text" id="edit-titulo" maxlength="100"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Descripción <span class="req">*</span></label>
+      <textarea class="form-textarea" id="edit-desc" maxlength="500"></textarea>
+    </div>
+    <div class="row-2">
+      <div class="form-group">
+        <label class="form-label">Precio ($MXN) <span class="req">*</span></label>
+        <input class="form-input" type="number" id="edit-precio" min="0"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tipo de precio</label>
+        <select class="form-select" id="edit-precio-tipo">
+          <option>precio fijo</option><option>por persona</option><option>por noche</option><option>por grupo</option><option>por hora</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Ubicación</label>
+      <select class="form-select" id="edit-ubicacion">
+        <optgroup label="🏖 Zonas Turísticas">
+          <option>Zona Diamante</option><option>Zona Dorada</option><option>La Quebrada</option>
+          <option>Playa Condesa</option><option>Playa Icacos</option><option>Playa Hornos</option>
+          <option>Playa Hornitos</option><option>Playa Revolcadero</option><option>Playa Pie de la Cuesta</option>
+          <option>Playa Boca Chica</option><option>Puerto Marqués</option><option>Isla La Roqueta</option>
+        </optgroup>
+        <optgroup label="🏙 Zona Urbana">
+          <option>Centro de Acapulco</option><option>Acapulco Tradicional</option><option>Caleta y Caletilla</option>
+          <option>El Morro</option><option>Garita</option><option>Jardín de la Reina</option>
+          <option>Costa Azul</option><option>Icacos (Residencial)</option>
+        </optgroup>
+        <optgroup label="🛣 Colonias y Barrios">
+          <option>Ciudad Renacimiento</option><option>Colonia Moderna</option><option>El Coloso</option>
+          <option>Las Cruces</option><option>Lomas de Chapultepec</option><option>Mozimba</option>
+          <option>Progreso</option><option>Providencia</option><option>Santa Cruz</option>
+          <option>Tres Palos</option><option>El Arenal</option><option>La Sabana</option>
+        </optgroup>
+        <optgroup label="🌿 Municipios Cercanos">
+          <option>Coyuca de Benítez</option><option>San Marcos</option><option>Técpan de Galeana</option>
+        </optgroup>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Enlace de Google Maps <span style="font-weight:400;color:var(--text-light);font-size:12px;">(opcional)</span></label>
+      <input class="form-input" type="url" id="edit-maps-url" placeholder="https://maps.app.goo.gl/..." style="font-size:13px;"/>
+    </div>
+    <p class="hint" style="background:#FFF8E1;border:1px solid #FFE082;border-radius:10px;padding:12px 16px;color:#7A5800;font-size:13px;">
+      ⚠️ Al guardar cambios, tu publicación volverá a revisión y quedará oculta hasta que un administrador la apruebe de nuevo.
+    </p>
+    <div class="form-actions">
+      <button class="btn-publish" onclick="saveEditPub()">💾 Guardar cambios</button>
+      <button class="btn-cancel" onclick="closeEditPub()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
+
+
+
+<!-- ===================== BILLETERA VIRTUAL ===================== -->
+<div id="billetera-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:400;backdrop-filter:blur(5px);overflow-y:auto;padding:20px 16px;">
+  <div class="bl-modal">
+
+    <!-- Hero header -->
+    <div class="bl-header">
+      <button class="mc-close-btn" onclick="closeBilletera()">×</button>
+      <div class="bl-header-top">
+        <div class="bl-wallet-icon">💼</div>
+        <div>
+          <div class="bl-header-label">Mi Billetera</div>
+          <div class="bl-header-user" id="bl-header-user"></div>
+        </div>
+      </div>
+      <div class="bl-saldo-principal">
+        <div class="bl-saldo-label">Saldo disponible</div>
+        <div class="bl-saldo-num" id="bl-saldo-aca">0 🪙</div>
+        <div class="bl-saldo-equiv" id="bl-saldo-mxn">$0 MXN</div>
+      </div>
+      <div class="bl-stats-row">
+        <div class="bl-stat-item">
+          <span id="bl-gasto-tarjeta">$0</span>
+          <small>💳 Saldo tarjeta</small>
+        </div>
+        <div class="bl-stat-div"></div>
+        <div class="bl-stat-item">
+          <span id="bl-gasto-aca">0 🪙</span>
+          <small>🪙 AcaPoints</small>
+        </div>
+        <div class="bl-stat-div"></div>
+        <div class="bl-stat-item">
+          <span id="bl-recargado">$0</span>
+          <small>💰 Total retirable</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="bl-tabs">
+      <button class="bl-tab active" data-tab="resumen"     onclick="switchBilleteraTab('resumen')">Resumen</button>
+      <button class="bl-tab"        data-tab="movimientos" onclick="switchBilleteraTab('movimientos')">Movimientos</button>
+      <button class="bl-tab"        data-tab="retirar"     onclick="switchBilleteraTab('retirar')">Transferir</button>
+    </div>
+
+    <!-- Contenido dinámico -->
+    <div id="bl-content" class="bl-content"></div>
+
+  </div>
+</div>
+
+
+<!-- ===================== MIS VENTAS ===================== -->
+<div id="misventas-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:400;backdrop-filter:blur(5px);overflow-y:auto;padding:20px 16px;">
+  <div class="mc-modal" style="max-width:640px;">
+
+    <div class="mc-modal-header" style="background:linear-gradient(135deg,#0a1f1f 0%,#003f3f 50%,#005f5f 100%);">
+      <button class="mc-close-btn" onclick="closeMisVentas()">×</button>
+      <h3>📦 Mis Ventas</h3>
+      <p>Registro de servicios vendidos</p>
+
+      <div class="mv-stats-grid">
+        <div class="mv-stat-box">
+          <span id="mv-stat-total">0</span>
+          <small>Total ventas</small>
+        </div>
+        <div class="mv-stat-box">
+          <span id="mv-stat-monto">$0</span>
+          <small>Ingresos</small>
+        </div>
+        <div class="mv-stat-box">
+          <span id="mv-stat-tarjeta">0</span>
+          <small>💳 Tarjeta</small>
+        </div>
+        <div class="mv-stat-box">
+          <span id="mv-stat-aca">0</span>
+          <small>🪙 AcaPoints</small>
+        </div>
+      </div>
+
+      <div class="mc-search-wrap" style="margin-top:0;">
+        <svg width="15" height="15" fill="none" stroke="#aaa" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" placeholder="Buscar por folio, ID, método…" oninput="renderMisVentas(this.value)" class="mc-search"/>
+      </div>
+    </div>
+
+    <div id="mv-list" class="mc-list"></div>
+  </div>
+</div>
+
+<!-- ===================== DETALLE VENTA ===================== -->
+<div id="venta-detalle-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:401;backdrop-filter:blur(5px);overflow-y:auto;padding:20px 16px;">
+  <div class="mc-modal" style="max-width:500px;background:#fff;">
+    <div class="cd-modal-header" style="background:linear-gradient(135deg,#0a1f1f,#005f5f);">
+      <button class="mc-close-btn" onclick="closeVentaDetalle()" style="font-size:13px;font-weight:600;width:auto;height:auto;background:transparent;padding:0;border-radius:0;">‹ Volver</button>
+      <h3 style="color:white;margin:0;">Detalle de venta</h3>
+    </div>
+    <div id="venta-detalle-body" style="padding:0;"></div>
+  </div>
+</div>
+
+<!-- ===================== MIS COMPRAS ===================== -->
+<div id="miscompras-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:400;backdrop-filter:blur(4px);overflow-y:auto;padding:20px 16px;">
+  <div class="mc-modal">
+    <div class="mc-modal-header">
+      <button class="mc-close-btn" onclick="closeMisCompras()">×</button>
+      <h3>🛍️ Mis Compras</h3>
+      <p>Historial de servicios contratados</p>
+      <div class="mc-stats">
+        <div class="mc-stat"><span id="mc-stat-total">0</span><small>Compras</small></div>
+        <div class="mc-stat-div"></div>
+        <div class="mc-stat"><span id="mc-stat-monto">$0</span><small>Total gastado</small></div>
+      </div>
+      <div class="mc-search-wrap">
+        <svg width="15" height="15" fill="none" stroke="#aaa" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" placeholder="Buscar por folio, servicio…" oninput="renderMisCompras(this.value)" class="mc-search"/>
+      </div>
+    </div>
+    <div id="miscompras-list" class="mc-list"></div>
+  </div>
+</div>
+
+<!-- ===================== DETALLE COMPRA ===================== -->
+<div id="compra-detalle-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:401;backdrop-filter:blur(4px);overflow-y:auto;padding:20px 16px;">
+  <div class="mc-modal" style="max-width:500px;">
+    <div class="cd-modal-header">
+      <button class="mc-close-btn" onclick="closeCompraDetalle()">‹ Volver</button>
+      <h3>Detalle de compra</h3>
+    </div>
+    <div id="compra-detalle-body"></div>
+  </div>
+</div>
+
+<!-- ===================== MODAL DE PAGO ===================== -->
+<div class="modal-overlay" id="pay-modal-overlay" onclick="if(event.target===this)closePayModal()">
+  <div class="pay-modal">
+    <button class="modal-close" onclick="closePayModal()">×</button>
+    <h3>💳 Contratar Servicio</h3>
+    <div id="pay-service-info" class="pay-service-info"></div>
+
+    <!-- Selector de método de pago -->
+    <div class="form-group" style="margin-top:18px;">
+      <label class="form-label">Método de pago</label>
+      <div class="pay-method-selector" id="pay-method-selector"></div>
+    </div>
+
+    <!-- Panel: Efectivo -->
+    <div id="panel-efectivo" class="pay-panel">
+      <div class="pay-info-box">
+        <span>💵</span>
+        <div>
+          <strong>Pago en efectivo</strong>
+          <p>Coordina el pago directamente con el proveedor al momento del servicio. Se registrará tu reserva en el sistema.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel: Tarjeta -->
+    <div id="panel-tarjeta" class="pay-panel" style="display:none;">
+      <div class="pay-info-box" style="background:#EBF5FF;border-color:#BBDAFF;">
+        <span>🔒</span>
+        <div><strong>Pago simulado con tarjeta</strong><p>Datos de prueba — ningún cargo real será efectuado.</p></div>
+      </div>
+      <div class="form-group" style="margin-top:14px;">
+        <label class="form-label">Número de tarjeta</label>
+        <input class="form-input" id="card-number" type="text" placeholder="•••• •••• •••• ••••" maxlength="19" oninput="formatCardNumber(this)"/>
+      </div>
+      <div class="row-2">
+        <div class="form-group">
+          <label class="form-label">Titular</label>
+          <input class="form-input" id="card-name" type="text" placeholder="NOMBRE APELLIDO"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Fecha / CVV</label>
+          <div style="display:flex;gap:8px;">
+            <input class="form-input" id="card-exp" type="text" placeholder="MM/AA" maxlength="5" style="width:50%" oninput="formatExpiry(this)"/>
+            <input class="form-input" id="card-cvv" type="text" placeholder="CVV" maxlength="3" style="width:50%"/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel: AcaPoints -->
+    <div id="panel-acapoints" class="pay-panel" style="display:none;">
+      <div class="acapoints-balance-box">
+        <div class="acapoints-logo">🪙</div>
+        <div>
+          <div class="acapoints-balance-label">Tu saldo</div>
+          <div class="acapoints-balance-num" id="modal-balance">0 AcaPoints</div>
+        </div>
+        <button class="btn-buy-points" onclick="openBuyPoints()">+ Comprar</button>
+      </div>
+      <div id="acapoints-insuficiente" class="pay-info-box" style="background:#FFF3CD;border-color:#FFC107;display:none;">
+        <span>⚠️</span>
+        <div><strong>Saldo insuficiente</strong><p>Compra más AcaPoints para continuar.</p></div>
+      </div>
+    </div>
+
+    <!-- Resumen de pago -->
+    <div class="pay-summary">
+      <div class="pay-summary-row"><span>Servicio</span><span id="sum-price"></span></div>
+      <div class="pay-summary-row pay-total"><span>Total a pagar</span><span id="sum-total"></span></div>
+    </div>
+
+    <button class="btn-publish" id="btn-confirm-pay" onclick="confirmPago()" style="width:100%;margin-top:16px;">
+      Confirmar Pago
+    </button>
+  </div>
+</div>
+
+<!-- ===================== MODAL COMPRAR ACAPOINTS ===================== -->
+<div class="modal-overlay" id="buypoints-modal-overlay" onclick="if(event.target===this)closeBuyPoints()">
+  <div class="pay-modal">
+    <button class="modal-close" onclick="closeBuyPoints()">×</button>
+    <h3>🪙 Comprar AcaPoints</h3>
+    <p style="color:var(--text-mid);font-size:14px;margin-bottom:16px;">Elige el paquete que más te convenga. Simulación — sin cargos reales.</p>
+
+    <div class="acapoints-packages" id="acapoints-packages">
+      <div class="ap-package" data-mxn="50" data-pts="42" onclick="selectPackage(this)">
+        <div class="ap-pkg-pts">42 🪙</div>
+        <div class="ap-pkg-price">$50 MXN</div>
+        <div class="ap-pkg-bonus">42 AcaPoints</div>
+      </div>
+      <div class="ap-package" data-mxn="100" data-pts="85" onclick="selectPackage(this)">
+        <div class="ap-pkg-pts">85 🪙</div>
+        <div class="ap-pkg-price">$100 MXN</div>
+        <div class="ap-pkg-bonus">85 AcaPoints</div>
+      </div>
+      <div class="ap-package" data-mxn="200" data-pts="170" onclick="selectPackage(this)">
+        <div class="ap-pkg-pts">170 🪙</div>
+        <div class="ap-pkg-price">$200 MXN</div>
+        <div class="ap-pkg-bonus popular-badge">⭐ Popular</div>
+      </div>
+      <div class="ap-package" data-mxn="500" data-pts="425" onclick="selectPackage(this)">
+        <div class="ap-pkg-pts">425 🪙</div>
+        <div class="ap-pkg-price">$500 MXN</div>
+        <div class="ap-pkg-bonus">425 AcaPoints</div>
+      </div>
+    </div>
+
+    <div id="buypoints-card-form" style="display:none;margin-top:16px;">
+      <div class="pay-info-box" style="background:#EBF5FF;border-color:#BBDAFF;margin-bottom:14px;">
+        <span>🔒</span><div><strong>Pago simulado</strong><p>Solo para demostración.</p></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Número de tarjeta</label>
+        <input class="form-input" id="bp-card-number" type="text" placeholder="•••• •••• •••• ••••" maxlength="19" oninput="formatCardNumber(this)"/>
+      </div>
+      <div class="row-2">
+        <div class="form-group">
+          <label class="form-label">Titular</label>
+          <input class="form-input" id="bp-card-name" type="text" placeholder="NOMBRE APELLIDO"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Fecha / CVV</label>
+          <div style="display:flex;gap:8px;">
+            <input class="form-input" id="bp-card-exp" type="text" placeholder="MM/AA" maxlength="5" style="width:50%" oninput="formatExpiry(this)"/>
+            <input class="form-input" id="bp-card-cvv" type="text" placeholder="CVV" maxlength="3" style="width:50%"/>
+          </div>
+        </div>
+      </div>
+      <button class="btn-publish" onclick="confirmBuyPoints()" style="width:100%;margin-top:8px;">
+        Comprar AcaPoints
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== MODAL ÉXITO PAGO ===================== -->
+<div class="modal-overlay" id="pago-success-overlay">
+  <div class="pay-modal" style="text-align:center;padding:40px 24px;">
+    <div style="font-size:64px;margin-bottom:16px;">✅</div>
+    <h3 style="margin-bottom:8px;">¡Pago completado!</h3>
+    <p id="pago-success-msg" style="color:var(--text-mid);margin-bottom:24px;"></p>
+    <button class="btn-publish" onclick="closePagoSuccess()" style="width:100%;">Cerrar</button>
+  </div>
+</div>
+
